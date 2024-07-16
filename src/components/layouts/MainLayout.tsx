@@ -1,20 +1,26 @@
-import { Layout, Menu } from "antd";
-import { createElement, FC } from "react";
+import { FC } from "react";
+import { Layout, Menu, MenuProps } from "antd";
+import { Outlet } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
-
-const items = [UserOutlined, VideoCameraOutlined, UploadOutlined, UserOutlined].map(
-    (icon, index) => ({
-        key: String(index + 1),
-        icon: createElement(icon),
-        label: `nav ${index + 1}`,
-    }),
-);
 
 const MainLayout: FC = () => {
+
+    const items: MenuProps['items'] = [
+        { key: '1', label: 'Dashboard' },
+        { key: '2', label: 'Profile' },
+        {
+            key: '3', label: 'User Management',
+            children: [
+                { key: '3.1', label: 'Create Student' },
+                { key: '3.2', label: 'Create Faculty' },
+            ]
+        },
+
+    ]
+
     return (
         <div>
-            <Layout>
+            <Layout style={{ height: '100vh' }}>
                 <Sider
                     breakpoint="lg"
                     collapsedWidth="0"
@@ -31,13 +37,8 @@ const MainLayout: FC = () => {
                 <Layout>
                     <Header style={{ padding: 0 }} />
                     <Content style={{ margin: '24px 16px 0' }}>
-                        <div
-                            style={{
-                                padding: 24,
-                                minHeight: 360,
-                            }}
-                        >
-                            content
+                        <div>
+                            <Outlet />
                         </div>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
