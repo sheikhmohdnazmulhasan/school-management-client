@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Layout, Menu, MenuProps } from "antd";
+import { Layout, Menu} from "antd";
 import { Outlet } from "react-router-dom";
 import { AdminItems } from "../../routes/Admin.routes";
 const { Header, Content, Footer, Sider } = Layout;
