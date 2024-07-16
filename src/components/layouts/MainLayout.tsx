@@ -1,22 +1,23 @@
 import { FC } from "react";
 import { Layout, Menu, MenuProps } from "antd";
 import { Outlet } from "react-router-dom";
+import { AdminItems } from "../../routes/Admin.routes";
 const { Header, Content, Footer, Sider } = Layout;
 
 const MainLayout: FC = () => {
 
-    const items: MenuProps['items'] = [
-        { key: '1', label: 'Dashboard' },
-        { key: '2', label: 'Profile' },
-        {
-            key: '3', label: 'User Management',
-            children: [
-                { key: '3.1', label: 'Create Student' },
-                { key: '3.2', label: 'Create Faculty' },
-            ]
-        },
+    // const items: MenuProps['items'] = [
+    //     { key: '1', label: 'Dashboard' },
+    //     { key: '2', label: 'Profile' },
+    //     {
+    //         key: '3', label: 'User Management',
+    //         children: [
+    //             { key: '3.1', label: 'Create Student' },
+    //             { key: '3.2', label: 'Create Faculty' },
+    //         ]
+    //     },
 
-    ]
+    // ]
 
     return (
         <div>
@@ -32,7 +33,7 @@ const MainLayout: FC = () => {
                     }}
                 >
                     <div className="demo-logo-vertical" />
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} />
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={AdminItems} />
                 </Sider>
                 <Layout>
                     <Header style={{ padding: 0 }} />

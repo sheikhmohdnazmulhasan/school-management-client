@@ -3,8 +3,7 @@ import Root from "../Root";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
-import AdminDashboard from "../pages/Admin/AdminDashboard";
-import CreateStudent from "../pages/Admin/CreateStudent";
+import { AdminRoutes } from "./Admin.routes";
 
 const Router = createBrowserRouter([
   {
@@ -14,14 +13,25 @@ const Router = createBrowserRouter([
       { index: true, element: <Dashboard /> }
     ]
   },
+
+  // admin routes
   {
     path: '/admin',
     element: <Root />,
-    children: [
-      { index: true, element: <AdminDashboard /> },
-      { path: '/admin/create-student', element: <CreateStudent /> }
-    ]
+    children: AdminRoutes,
   },
+  // {
+  //   path: '/faculty',
+  //   element: <Root />,
+  //   children: AdminPaths,
+  // },
+  // {
+  //   path: '/student',
+  //   element: <Root />,
+  //   children: AdminPaths,
+  // },
+
+  // general routes
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
 ]);
