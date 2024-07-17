@@ -1,7 +1,8 @@
 import { FC } from "react";
-import { Layout, Menu} from "antd";
+import { Layout, Menu } from "antd";
 import { Outlet } from "react-router-dom";
-import { AdminItems } from "../../routes/Admin.routes";
+import { itemsGenerator } from "../../utils/itemsgenerator";
+import { adminPaths } from "../../routes/Admin.routes";
 const { Header, Content, Footer, Sider } = Layout;
 
 const MainLayout: FC = () => {
@@ -33,7 +34,7 @@ const MainLayout: FC = () => {
                     }}
                 >
                     <div className="demo-logo-vertical" />
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={AdminItems} />
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={itemsGenerator(adminPaths)} />
                 </Sider>
                 <Layout>
                     <Header style={{ padding: 0 }} />

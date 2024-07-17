@@ -3,7 +3,8 @@ import Root from "../Root";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
-import { AdminRoutes } from "./Admin.routes";
+import { routesGenerator } from "../utils/routesGenerator";
+import { adminPaths } from "./Admin.routes";
 
 const Router = createBrowserRouter([
   {
@@ -18,18 +19,8 @@ const Router = createBrowserRouter([
   {
     path: '/admin',
     element: <Root />,
-    children: AdminRoutes,
+    children: routesGenerator(adminPaths),
   },
-  // {
-  //   path: '/faculty',
-  //   element: <Root />,
-  //   children: AdminPaths,
-  // },
-  // {
-  //   path: '/student',
-  //   element: <Root />,
-  //   children: AdminPaths,
-  // },
 
   // general routes
   { path: "/login", element: <Login /> },
