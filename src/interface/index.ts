@@ -18,3 +18,8 @@ export interface TSidebarItem {
     label: ReactNode;
     children?: TSidebarItem[];
 }
+
+export interface TAuthState {
+    user: null | object;
+    token: null | string
+}
