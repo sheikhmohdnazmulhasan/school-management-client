@@ -14,7 +14,7 @@ const userRole = {
 }
 
 const Sidebar = () => {
-    const {role} = useAppSelector(useCurrentUser);
+    const { role } = useAppSelector(useCurrentUser) as { role: string | null };
 
     let sidebarItems;
 
