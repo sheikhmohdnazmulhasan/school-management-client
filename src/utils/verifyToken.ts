@@ -1,4 +1,5 @@
+import { jwtDecode } from 'jwt-decode';
 
 export function verifyToken(token: string) {
-    return
+    return jwtDecode(token)
 }

@@ -4,6 +4,7 @@ import { useLoginMutation } from "../redux/features/auth/authApi";
 import { FC } from "react";
 import { useAppDispatch } from "../redux/hook";
 import { setUser } from "../redux/features/auth/authSlice";
+import { verifyToken } from "../utils/verifyToken";
 
 const Login: FC = () => {
     const { register, handleSubmit } = useForm();
@@ -16,8 +17,9 @@ const Login: FC = () => {
         const res = await login(data).unwrap();
 
         if (!isLoading && !error) {
-            dispatch(setUser({ user: {}, token: res.data.accessToken }))
+            const user = verifyToken(res.data.accessToken);
 
+            dispatch(setUser({ user, token: res.data.accessToken }))
         }
     }
 
