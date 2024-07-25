@@ -5,15 +5,16 @@ import { FC } from "react";
 import { useAppDispatch } from "../redux/hook";
 import { setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
+import { TLoginCredential } from "../interface";
 
 const Login: FC = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm<TLoginCredential>();
     const dispatch = useAppDispatch();
 
     const [login, { error, isLoading }] = useLoginMutation();
 
 
-    async function onSubmit(data) {
+    async function onSubmit(data: TLoginCredential) {
         const res = await login(data).unwrap();
 
         if (!isLoading && !error) {

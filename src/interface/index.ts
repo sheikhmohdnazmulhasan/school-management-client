@@ -23,3 +23,8 @@ export interface TAuthState {
     user: null | object;
     token: null | string
 }
+
+export interface TLoginCredential {
+    id: string;
+    password: string;
+}
