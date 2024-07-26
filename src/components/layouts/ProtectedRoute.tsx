@@ -7,10 +7,13 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
     // const { token } = useAppSelector((state: RootState) => state.auth);
     const token = useAppSelector(useCurrentToken);
 
-    if (!token) return <Navigate to={'/login'} replace={true}/>
+    if (!token) return <Navigate to={'/login'} replace={true} />
 
 
     return children
 };
 
 export default ProtectedRoute;
+
+
+

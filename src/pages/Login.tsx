@@ -5,22 +5,38 @@ import { FC } from "react";
 import { useAppDispatch } from "../redux/hook";
 import { setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
-import { TLoginCredential } from "../interface";
+import { TLoginCredential, TUser } from "../interface";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const Login: FC = () => {
     const { register, handleSubmit } = useForm<TLoginCredential>();
-    const dispatch = useAppDispatch();
-
     const [login, { error, isLoading }] = useLoginMutation();
-
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     async function onSubmit(data: TLoginCredential) {
-        const res = await login(data).unwrap();
+        const toastId = toast.loading('Logging In...');
 
-        if (!isLoading && !error) {
-            const user = verifyToken(res.data.accessToken);
+        try {
+            const res = await login(data).unwrap();
 
-            dispatch(setUser({ user, token: res.data.accessToken }))
+            if (error) {
+                toast.error('Sorry', { id: toastId });
+                console.log(error);
+
+            } else if (!isLoading && !error) {
+                const user = (verifyToken(res.data.accessToken) as TUser)
+
+                dispatch(setUser({ user, token: res.data.accessToken }));
+
+                toast.success('Logged in Success', { id: toastId });
+                navigate(`/${user.role}/dashboard`);
+            }
+
+        } catch (error) {
+            toast.error('Something Wrong', { id: toastId });
+            console.log(error);
         }
     }
 
