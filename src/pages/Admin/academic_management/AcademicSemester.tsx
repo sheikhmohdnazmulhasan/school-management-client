@@ -2,7 +2,7 @@ import { useGetAllSemesterQuery } from "../../../redux/features/academic_semeste
 
 const AcademicSemester = () => {
 
-    const { data, isError, isLoading, isSuccess } = useGetAllSemesterQuery(undefined);
+    const { data, isError, isLoading, isSuccess } = useGetAllSemesterQuery(undefined)
 
     console.log({ data, isError, isLoading, isSuccess });
 
