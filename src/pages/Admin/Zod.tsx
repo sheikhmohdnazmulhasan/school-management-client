@@ -1,21 +1,15 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z, TypeOf } from "zod";
-
-// Define the schema using Zod
-const schema = z.object({
-    name: z.string().nonempty({ message: 'Name is required' }),
-    email: z.string().nonempty({ message: 'Email is required' }).email({ message: 'Invalid email address' }),
-    number: z.string().nonempty({ message: 'Number is required' }),
-});
+import { ZodValidation } from "../../schemas";
+import { TypeOf } from "zod";
 
 // Infer the TypeScript type from the schema
-type FormSchema = TypeOf<typeof schema>;
+type FormSchema = TypeOf<typeof ZodValidation.zodSchema>;
 
 const Zod = () => {
     // Using `useForm` with Zod schema resolver and TypeScript type
     const { handleSubmit, register, formState: { errors } } = useForm<FormSchema>({
-        resolver: zodResolver(schema),
+        resolver: zodResolver(ZodValidation.zodSchema),
     });
 
     // Handle form submission
@@ -35,7 +29,7 @@ const Zod = () => {
                 {errors.email?.message && <p>{errors.email?.message}</p>}
 
                 <label htmlFor="number">Number</label> <br />
-                <input type="number" id="number" {...register('number')} /> <br />
+                <input type="number" id="number" {...register('number', { valueAsNumber: true })} /> <br />
                 {errors.number?.message && <p>{errors.number?.message}</p>}
 
                 <button type="submit">Submit</button>
