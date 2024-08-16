@@ -3,6 +3,7 @@ import AdminDashboard from "../pages/Admin/AdminDashboard";
 import CreateAdmin from "../pages/Admin/CreateAdmin";
 import CreateFaculty from "../pages/Admin/CreateFaculty";
 import CreateStudent from "../pages/Admin/CreateStudent";
+import Zod from "../pages/Admin/Zod";
 
 export const adminPaths = [
     {
@@ -18,6 +19,11 @@ export const adminPaths = [
                 name: 'Academic Semester',
                 path: '/admin/academic-semester',
                 element: <AcademicSemester />
+            },
+            {
+                name: 'Zod',
+                path: '/admin/zod',
+                element: <Zod />
             }
         ]
 },
